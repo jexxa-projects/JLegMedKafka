@@ -39,14 +39,14 @@
     <!-- version of dependencies -->
     <jlegmed.core.version>3.5.6</jlegmed.core.version>
     <activemq.artemis.client.version>2.41.0</activemq.artemis.client.version>
-    <postgres.version>42.7.5</postgres.version>
+    <postgres.version>42.7.6</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
     <kafka.clients.version>4.0.0</kafka.clients.version>
 
     <!-- version of test dependencies -->
-    <junit.platform.launcher.version>1.12.2</junit.platform.launcher.version>
-    <junit.jupiter.engine.version>5.12.2</junit.jupiter.engine.version>
-    <junit.jupiter.params.version>5.12.2</junit.jupiter.params.version>
+    <junit.platform.launcher.version>1.13.0</junit.platform.launcher.version>
+    <junit.jupiter.engine.version>5.13.0</junit.jupiter.engine.version>
+    <junit.jupiter.params.version>5.13.0</junit.jupiter.params.version>
     <awaitility.version>4.3.0</awaitility.version>
     <unirest.java.version>3.14.5</unirest.java.version>
 
@@ -58,7 +58,7 @@
     <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
 
     <!--version of  maven plugins  -->
-    <maven.clean.plugin>3.4.1</maven.clean.plugin>
+    <maven.clean.plugin>3.5.0</maven.clean.plugin>
     <maven.compiler.plugin>3.14.0</maven.compiler.plugin>
     <maven.deploy.plugin>3.1.4</maven.deploy.plugin>
     <maven.failsafe.plugin>3.5.3</maven.failsafe.plugin>
@@ -73,10 +73,10 @@
     <maven.enforcer.plugin>3.5.0</maven.enforcer.plugin>
     <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
     <maven.versions.plugin>2.18.0</maven.versions.plugin>
-    <maven.build.helper.version>3.6.0</maven.build.helper.version>
+    <maven.build.helper.version>3.6.1</maven.build.helper.version>
     <maven.jib.plugin>3.4.5</maven.jib.plugin>
     <maven.shade.plugin>3.6.0</maven.shade.plugin>
-    <maven.exec.plugin>3.5.0</maven.exec.plugin>
+    <maven.exec.plugin>3.5.1</maven.exec.plugin>
 
 
     <!-- command to start the application for integration tests -->
