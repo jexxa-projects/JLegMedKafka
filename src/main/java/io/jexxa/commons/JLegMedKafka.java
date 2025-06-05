@@ -1,22 +1,53 @@
 package io.jexxa.commons;
 
-import io.jexxa.jlegmed.core.JLegMed;
-import java.util.concurrent.TimeUnit;
-import static org.slf4j.LoggerFactory.getLogger;
+import io.jexxa.common.facade.logger.SLF4jLogger;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+
+import java.util.Properties;
 
 public final class JLegMedKafka
 {
     public static void main(String[] args)
     {
-        var jLegMed = new JLegMed(JLegMedKafka.class);
 
-        jLegMed.newFlowGraph("HelloWorld")
+        SLF4jLogger.getLogger(JLegMedKafka.class).info("I am a Kafka Producer");
+
+        String bootstrapServers = "127.0.0.1:9092";
+
+        // create Producer properties
+        Properties properties = new Properties();
+        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+        // create the producer
+        KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
+
+        // create a producer record
+        ProducerRecord<String, String> producerRecord =
+                new ProducerRecord<>("demo_java", "hello world");
+
+        // send data - asynchronous
+        producer.send(producerRecord);
+
+        // flush data - synchronous
+        producer.flush();
+        // flush and close producer
+        producer.close();
+
+
+       /*
+               var jLegMed = new JLegMed(JLegMedKafka.class);
+                jLegMed.newFlowGraph("HelloWorld")
                 .every(1, TimeUnit.SECONDS)
 
                 .receive(String.class).from( () -> "Hello " )
                 .and().processWith(data -> data + "World" )
                 .and().consumeWith(data -> getLogger(JLegMedKafka.class).info(data));
 
-        jLegMed.run();
+        jLegMed.run();*/
     }
 }

@@ -41,6 +41,7 @@
     <activemq.artemis.client.version>2.41.0</activemq.artemis.client.version>
     <postgres.version>42.7.5</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
+    <kafka.clients.version>4.0.0</kafka.clients.version>
 
     <!-- version of test dependencies -->
     <junit.platform.launcher.version>1.12.2</junit.platform.launcher.version>
@@ -77,6 +78,7 @@
     <maven.shade.plugin>3.6.0</maven.shade.plugin>
     <maven.exec.plugin>3.5.0</maven.exec.plugin>
 
+
     <!-- command to start the application for integration tests -->
     <context.command.start>
           -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${maven.jacoco.plugin}/org.jacoco.agent-${maven.jacoco.plugin}-runtime.jar=destfile=jacoco-it-app.exec,port=6300,output=tcpserver
@@ -110,6 +112,11 @@
       <version>${activemq.artemis.client.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka.clients.version}</version>
+    </dependency>
 
     <!-- Dependencies required for tests -->
     <dependency>
