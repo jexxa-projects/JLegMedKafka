@@ -1,4 +1,4 @@
-package io.jexxa.jlegmedkafka.plugins.event;
+package io.jexxa.jlegmedkafka.plugins.event.kafka;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;

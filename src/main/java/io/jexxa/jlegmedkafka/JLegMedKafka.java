@@ -1,7 +1,7 @@
 package io.jexxa.jlegmedkafka;
 
 import io.jexxa.jlegmed.core.JLegMed;
-import io.jexxa.jlegmedkafka.plugins.event.KafkaSender;
+import io.jexxa.jlegmedkafka.plugins.event.kafka.KafkaSender;
 
 import java.util.concurrent.TimeUnit;
 
