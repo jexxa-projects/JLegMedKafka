@@ -4,7 +4,7 @@
 
 
   <name>JLegMedKafka</name>
-  <groupId>io.jexxa.commons</groupId>
+  <groupId>io.jexxa.jlegmedkafka</groupId>
   <artifactId>jlegmedkafka</artifactId>
   <version>0.1.0-SNAPSHOT</version>
 
