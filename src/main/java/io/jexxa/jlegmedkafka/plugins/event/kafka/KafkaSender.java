@@ -7,6 +7,8 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
+import static io.jexxa.jlegmedkafka.plugins.event.kafka.KafkaPool.kafkaProducer;
+
 public class KafkaSender {
 
     public static void sendToKafka(String message) {
@@ -19,7 +21,7 @@ public class KafkaSender {
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
         // create the producer
-        KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
+        KafkaProducer<String, String> producer = kafkaProducer(properties, String.class, String.class);
 
         // create a producer record
         ProducerRecord<String, String> producerRecord =
@@ -28,10 +30,6 @@ public class KafkaSender {
         // send data - asynchronous
         producer.send(producerRecord);
 
-        // flush data - synchronous
-        producer.flush();
-        // flush and close producer
-        producer.close();
     }
 
     private KafkaSender() {}
