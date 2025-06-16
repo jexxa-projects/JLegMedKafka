@@ -2,6 +2,7 @@ package io.jexxa.jlegmedkafka;
 
 import io.jexxa.jlegmed.core.JLegMed;
 import io.jexxa.jlegmedkafka.plugins.event.kafka.KafkaSender;
+import io.jexxa.jlegmedkafka.plugins.event.kafka.KafkaTestMessage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +21,8 @@ public final class JLegMedKafka
 
                 .receive(String.class).from( () -> "Hello " )
                 .and().processWith(data -> data + "World" )
-                .and().consumeWith(KafkaSender::sendToKafka);
+                .and().processWith( KafkaTestMessage::new )
+                .and().consumeWith(KafkaSender::sendToKafka).useProperties("test-kafka-connection");
 
         jLegMed.monitorPipes("HelloKafka", logFunctionStyle());
         jLegMed.run();
