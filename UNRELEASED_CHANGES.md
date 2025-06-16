@@ -2,6 +2,7 @@
 
 ### 🤖 Dependencies
 
+- *(CI)* Bump stefanzweifel/git-auto-commit-action from 5 to 6 - ([b8c5442](https://github.com/jexxa-projects/JLegMedKafka/commit/b8c54424a7fe2f3b8df59daf57ed840cd4194412))
 - *(java)* Bump org.junit.platform:junit-platform-launcher - ([3ab813d](https://github.com/jexxa-projects/JLegMedKafka/commit/3ab813db844a5c26df94dab4c7f8baf6730ebf64))
 - *(java)* Bump org.junit.jupiter:junit-jupiter-params - ([c4dcc98](https://github.com/jexxa-projects/JLegMedKafka/commit/c4dcc98154252a57e6d73e7d85b88d6620911aab))
 - *(java)* Bump org.apache.maven.plugins:maven-clean-plugin - ([0af26f4](https://github.com/jexxa-projects/JLegMedKafka/commit/0af26f4439c0370fbf94463c1ab54e2b7d69e8a4))
