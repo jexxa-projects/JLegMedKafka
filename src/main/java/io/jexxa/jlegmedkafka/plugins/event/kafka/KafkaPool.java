@@ -15,7 +15,7 @@ public class KafkaPool {
 
     private static final Map<ProducerEntry, KafkaProducer<?,?>> producerMap = Collections.synchronizedMap(new ConcurrentHashMap<>());
 
-    public static <K, V> KafkaProducer<K,V> kafkaProducer(Properties properties, Class<K> keyClazz, Class<V> valueClazz)
+    public static <K, V> KafkaProducer<K,V> kafkaProducer(Properties properties, Class<?> keyClazz, Class<?> valueClazz)
     {
         return (KafkaProducer<K, V>) producerMap.computeIfAbsent(new ProducerEntry(properties, keyClazz, valueClazz), producerEntry -> new KafkaProducer<>(properties));
     }

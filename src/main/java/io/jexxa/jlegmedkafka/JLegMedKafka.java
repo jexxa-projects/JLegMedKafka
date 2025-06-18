@@ -22,7 +22,7 @@ public final class JLegMedKafka
                 .receive(String.class).from( () -> "Hello " )
                 .and().processWith(data -> data + "World" )
                 .and().processWith( KafkaTestMessage::new )
-                .and().consumeWith(KafkaSender::sendToKafka).useProperties("test-kafka-connection");
+                .and().consumeWith(KafkaSender::sendToKafkaFluent).useProperties("test-kafka-connection");
 
         jLegMed.monitorPipes("HelloKafka", logFunctionStyle());
         jLegMed.run();

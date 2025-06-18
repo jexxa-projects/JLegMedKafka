@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import static io.jexxa.jlegmedkafka.plugins.event.kafka.KafkaPool.kafkaProducer;
+import static java.time.Instant.now;
 
 public class KafkaSender {
 
@@ -24,6 +25,17 @@ public class KafkaSender {
 
         // send data - asynchronous
         producer.send(producerRecord);
+    }
+
+    public static void sendToKafkaFluent(KafkaTestMessage message, FilterContext filterContext)
+    {        filterContext.properties().setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, JSONSerializer.class.getName());
+        filterContext.properties().setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JSONSerializer.class.getName());
+
+        new KafkaEventSender<String, KafkaTestMessage>(filterContext.filterProperties())
+                    .send("test", message)
+                    .withTimestamp(now())
+                    .toTopic("demo_java")
+                    .asJSON();
     }
 
     private KafkaSender() {}
