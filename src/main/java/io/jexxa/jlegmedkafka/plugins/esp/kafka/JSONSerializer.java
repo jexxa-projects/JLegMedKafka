@@ -1,4 +1,4 @@
-package io.jexxa.jlegmedkafka.plugins.event.kafka;
+package io.jexxa.jlegmedkafka.plugins.esp.kafka;
 
 
 import io.jexxa.common.facade.json.JSONManager;
