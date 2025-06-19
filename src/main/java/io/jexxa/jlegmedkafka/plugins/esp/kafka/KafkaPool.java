@@ -11,13 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class KafkaPool {
     @SuppressWarnings("unused")
     private static final KafkaPool INSTANCE = new KafkaPool();
-    record ProducerEntry(Properties properties, Class<?> keyClazz, Class<?> valueClass){}
 
-    private static final Map<ProducerEntry, KafkaProducer<?,?>> producerMap = Collections.synchronizedMap(new ConcurrentHashMap<>());
+    private static final Map<Properties, KafkaProducer<Object,Object>> producerMap = Collections.synchronizedMap(new ConcurrentHashMap<>());
 
-    public static <K, V> KafkaProducer<K,V> kafkaProducer(Properties properties, Class<?> keyClazz, Class<?> valueClazz)
+    public static KafkaProducer<Object,Object> kafkaProducer(Properties properties)
     {
-        return (KafkaProducer<K, V>) producerMap.computeIfAbsent(new ProducerEntry(properties, keyClazz, valueClazz), producerEntry -> new KafkaProducer<>(properties));
+        return producerMap.computeIfAbsent(properties, entry -> new KafkaProducer<>(properties));
     }
 
     private void cleanup()

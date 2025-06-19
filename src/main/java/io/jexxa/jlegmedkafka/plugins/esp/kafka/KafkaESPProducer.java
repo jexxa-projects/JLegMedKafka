@@ -7,11 +7,21 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import static io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaPool.kafkaProducer;
+import static java.util.Objects.requireNonNull;
 
 public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
     private final FilterProperties filterProperties;
 
-    public KafkaESPProducer(final FilterProperties filterProperties) {
+    public static <K, V> KafkaESPProducer<K,V> kafkaESPProducer(Class<K> keyClazz,
+                                                                Class<V> valueClazz,
+                                                                FilterProperties filterProperties)
+    {
+        requireNonNull(keyClazz);
+        requireNonNull(valueClazz);
+        return new KafkaESPProducer<>(filterProperties);
+    }
+
+    protected KafkaESPProducer(FilterProperties filterProperties) {
         this.filterProperties = filterProperties;
     }
 
@@ -23,7 +33,7 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
 
     @Override
     protected void sendAsAVRO(K key, V eventData, String topic, Long timestamp) {
-
+        //Not implemented yet
     }
 
     @Override
@@ -47,8 +57,9 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
 
     private void send(K key, V eventData, String topic, Long timestamp)
     {
-        var producer = kafkaProducer(filterProperties.properties(), key.getClass(), eventData.getClass());
+        var producer = kafkaProducer(filterProperties.properties());
         producer.send(new ProducerRecord<>(topic, null, timestamp, key, eventData));
         producer.flush();
     }
+
 }
