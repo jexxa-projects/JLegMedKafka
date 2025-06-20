@@ -1,3 +1,5 @@
 package io.jexxa.jlegmedkafka.plugins.mykafka;
 
-public record MyKafkaTestMessage2(int counter) { }
+import java.time.Instant;
+
+public record MyKafkaTestMessage2(int counter, Instant timestamp) { }

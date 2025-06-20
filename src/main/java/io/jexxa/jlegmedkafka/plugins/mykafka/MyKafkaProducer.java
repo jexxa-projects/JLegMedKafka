@@ -12,7 +12,7 @@ public class MyKafkaProducer {
         kafkaESPProducer(String.class, MyKafkaTestMessage.class, filterContext.filterProperties())
                     .send("test", message)
                     .withTimestamp(now())
-                    .toTopic("demo_java")
+                    .toTopic("demo_java_json")
                     .asJSON();
     }
 
@@ -21,8 +21,17 @@ public class MyKafkaProducer {
         kafkaESPProducer(String.class, MyKafkaTestMessage2.class, filterContext.filterProperties())
                 .send("test2", message)
                 .withTimestamp(now())
-                .toTopic("demo_java")
+                .toTopic("demo_java_json2")
                 .asJSON();
+    }
+
+    public static void sendToKafkaAsText(MyKafkaTestMessage message, FilterContext filterContext)
+    {
+        kafkaESPProducer(String.class, MyKafkaTestMessage.class, filterContext.filterProperties())
+                .send("test", message)
+                .withTimestamp(now())
+                .toTopic("demo_java_text")
+                .asText();
     }
 
     private MyKafkaProducer() {}

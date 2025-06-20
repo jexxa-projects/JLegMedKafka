@@ -117,6 +117,12 @@
       <artifactId>kafka-clients</artifactId>
       <version>${kafka.clients.version}</version>
     </dependency>
+    <!-- Confluent JSON Schema Serializer -->
+    <dependency>
+      <groupId>io.confluent</groupId>
+      <artifactId>kafka-json-schema-serializer</artifactId>
+      <version>7.9.1</version>
+    </dependency>
 
     <!-- Dependencies required for tests -->
     <dependency>
@@ -709,5 +715,10 @@
       </build>
     </profile>
   </profiles>
-
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <url>https://packages.confluent.io/maven</url>
+    </repository>
+  </repositories>
 </project>
