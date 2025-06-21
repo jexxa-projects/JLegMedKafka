@@ -54,8 +54,6 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 filterProperties.properties().getProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, clazz.getName())
         );
-
-        System.out.println("Serializer " + filterProperties.properties().get(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG));
     }
 
     private void send(K key, V eventData, String topic, Long timestamp)

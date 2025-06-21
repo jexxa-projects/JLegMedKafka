@@ -2,7 +2,6 @@ package io.jexxa.jlegmedkafka.plugins.esp.kafka;
 
 import io.jexxa.adapterapi.JexxaContext;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 
 import java.util.Collections;
 import java.util.Map;
@@ -17,7 +16,6 @@ public class KafkaPool {
 
     public static KafkaProducer<Object,Object> kafkaProducer(Properties properties)
     {
-        System.out.println("POOL VALUE SERDE: " + properties.get(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG));
         return producerMap.computeIfAbsent(properties, entry -> new KafkaProducer<>(properties));
     }
 
