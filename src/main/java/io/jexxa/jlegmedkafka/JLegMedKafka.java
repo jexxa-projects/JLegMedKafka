@@ -9,7 +9,6 @@ import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static io.jexxa.common.facade.logger.SLF4jLogger.getLogger;
 import static io.jexxa.jlegmed.plugins.monitor.LogMonitor.logFunctionStyle;
 
 public final class JLegMedKafka
@@ -18,9 +17,7 @@ public final class JLegMedKafka
 
     public static void main(String[] args)
     {
-
-
-        getLogger(JLegMedKafka.class).info("I am a Kafka Producer");
+        /* Send messages to Kafka as JSON using TopicNameStrategy */
         var jLegMed = new JLegMed(JLegMedKafka.class);
         jLegMed.newFlowGraph("HelloKafkaAsJSON")
                 .every(1, TimeUnit.SECONDS)
@@ -30,8 +27,11 @@ public final class JLegMedKafka
                 .and().processWith( MyKafkaTestMessage::new )
                 .and().consumeWith(MyKafkaProducer::sendToKafka).useProperties(KAFKA_CONNECTION_PREFIX);
 
-        AtomicInteger counter = new AtomicInteger(0);
 
+        /* Send a different type of messages to Kafka as JSON using TopicNameStrategy to a different
+           topic to ensure that the same KafkaProducer is used even in case of different message type but the same
+           serialization strategy */
+        AtomicInteger counter = new AtomicInteger(0);
         jLegMed.newFlowGraph("HelloKafkaAsJSON2")
                 .every(1, TimeUnit.SECONDS)
 
@@ -39,7 +39,7 @@ public final class JLegMedKafka
                 .and().processWith(value -> new MyKafkaTestMessage2(value, Instant.now()) )
                 .and().consumeWith(MyKafkaProducer::sendToKafka2).useProperties(KAFKA_CONNECTION_PREFIX);
 
-      /* TODO: Still not working
+      /* Send messages to Kafka as Text using TopicNameStrategy which requires using a second KafkaProducer due to different serialization startegy*/
       jLegMed.newFlowGraph("HelloKafkaAsText")
                 .every(1, TimeUnit.SECONDS)
 
@@ -47,7 +47,7 @@ public final class JLegMedKafka
                 .and().processWith(data -> data + "World" )
                 .and().processWith( MyKafkaTestMessage::new )
                 .and().consumeWith(MyKafkaProducer::sendToKafkaAsText).useProperties(KAFKA_CONNECTION_PREFIX);
-*/
+
         jLegMed.monitorPipes("HelloKafkaAsJSON", logFunctionStyle());
         jLegMed.run();
     }

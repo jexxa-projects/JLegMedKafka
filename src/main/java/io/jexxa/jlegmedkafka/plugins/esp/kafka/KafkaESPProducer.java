@@ -5,7 +5,6 @@ import io.jexxa.jlegmed.core.filter.FilterProperties;
 import io.jexxa.jlegmedkafka.plugins.esp.ESPProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
 
 import static io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaPool.kafkaProducer;
 import static java.util.Objects.requireNonNull;
@@ -29,7 +28,7 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
     @Override
     protected void sendAsJSON(K key, V eventData, String topic, Long timestamp) {
         setSerializerIfAbsent(KafkaJsonSchemaSerializer.class);
-        send(key, eventData, topic, timestamp);
+        internalSend(key, eventData, topic, timestamp);
     }
 
     @Override
@@ -39,8 +38,8 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
 
     @Override
     protected void sendAsText(K key, V eventData, String topic, Long timestamp) {
-        setSerializerIfAbsent(StringSerializer.class);
-        send(key, eventData, topic, timestamp);
+        setSerializerIfAbsent(GenericStringSerializer.class);
+        internalSend(key, eventData, topic, timestamp);
     }
 
     private <T> void setSerializerIfAbsent(Class<T> clazz)
@@ -56,7 +55,7 @@ public class KafkaESPProducer<K,V> extends ESPProducer<K,V> {
         );
     }
 
-    private void send(K key, V eventData, String topic, Long timestamp)
+    private void internalSend(K key, V eventData, String topic, Long timestamp)
     {
         var producer = kafkaProducer(filterProperties.properties());
         producer.send(new ProducerRecord<>(topic, null, timestamp, key, eventData));
