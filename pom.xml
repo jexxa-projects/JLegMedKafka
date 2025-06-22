@@ -34,7 +34,7 @@
     <docker.base.image>eclipse-temurin:21-jre-alpine</docker.base.image>
     <docker.user>guest</docker.user> <!-- Defines the user running the application inside the container. Note: This user must be already created inside the base image -->
     <image.repository.root>ghcr.io/jexxa-projects</image.repository.root>
-    <image.directory>${parent.artifactId}</image.directory>
+    <image.directory>${artifactId}</image.directory>
 
     <!-- version of dependencies -->
     <jlegmed.core.version>3.5.6</jlegmed.core.version>
