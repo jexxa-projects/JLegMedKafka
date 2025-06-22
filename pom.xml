@@ -42,6 +42,7 @@
     <postgres.version>42.7.7</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
     <kafka.clients.version>4.0.0</kafka.clients.version>
+    <kafka.json.schema.serializer>7.9.1</kafka.json.schema.serializer>
 
     <!-- version of test dependencies -->
     <junit.platform.launcher.version>1.13.1</junit.platform.launcher.version>
@@ -101,18 +102,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>${postgres.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>artemis-jms-client</artifactId>
-      <version>${activemq.artemis.client.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
       <version>${kafka.clients.version}</version>
@@ -121,7 +110,7 @@
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-json-schema-serializer</artifactId>
-      <version>7.9.1</version>
+      <version>${kafka.json.schema.serializer}</version>
     </dependency>
 
     <!-- Dependencies required for tests -->
