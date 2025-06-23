@@ -41,7 +41,7 @@
     <activemq.artemis.client.version>2.41.0</activemq.artemis.client.version>
     <postgres.version>42.7.7</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
-    <kafka.clients.version>4.0.0</kafka.clients.version>
+    <kafka.clients.version>8.0.0-ce</kafka.clients.version>
     <kafka.json.schema.serializer>7.9.1</kafka.json.schema.serializer>
 
     <!-- version of test dependencies -->
