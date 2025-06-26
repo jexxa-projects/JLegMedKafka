@@ -37,12 +37,12 @@
     <image.directory>${artifactId}</image.directory>
 
     <!-- version of dependencies -->
-    <jlegmed.core.version>3.5.6</jlegmed.core.version>
+    <jlegmed.core.version>3.5.7</jlegmed.core.version>
     <activemq.artemis.client.version>2.41.0</activemq.artemis.client.version>
     <postgres.version>42.7.7</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
     <kafka.clients.version>8.0.0-ce</kafka.clients.version>
-    <kafka.json.schema.serializer>7.9.1</kafka.json.schema.serializer>
+    <kafka.json.schema.serializer>8.0.0</kafka.json.schema.serializer>
 
     <!-- version of test dependencies -->
     <junit.platform.launcher.version>1.13.2</junit.platform.launcher.version>
