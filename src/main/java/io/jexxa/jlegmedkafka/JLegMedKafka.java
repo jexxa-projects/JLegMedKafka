@@ -1,6 +1,7 @@
 package io.jexxa.jlegmedkafka;
 
 import io.jexxa.jlegmed.core.JLegMed;
+import io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaPool;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaProducer;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaTestMessage;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaTestMessage2;
@@ -18,7 +19,9 @@ public final class JLegMedKafka
     public static void main(String[] args)
     {
         /* Send messages to Kafka as JSON using TopicNameStrategy */
-        var jLegMed = new JLegMed(JLegMedKafka.class);
+        var jLegMed = new JLegMed(JLegMedKafka.class)
+                .useTechnology(KafkaPool.class);
+
         jLegMed.newFlowGraph("HelloKafkaAsJSON")
                 .every(1, TimeUnit.SECONDS)
 
