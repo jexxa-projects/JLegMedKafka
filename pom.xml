@@ -34,7 +34,7 @@
     <docker.base.image>eclipse-temurin:21-jre-alpine</docker.base.image>
     <docker.user>guest</docker.user> <!-- Defines the user running the application inside the container. Note: This user must be already created inside the base image -->
     <image.repository.root>ghcr.io/jexxa-projects</image.repository.root>
-    <image.directory>${artifactId}</image.directory>
+    <image.directory>jlegmedkafka</image.directory>
 
     <!-- version of dependencies -->
     <jlegmed.core.version>3.5.7</jlegmed.core.version>
@@ -128,10 +128,12 @@
       <scope>test</scope>
     </dependency>
 
+
+    <!-- Testcontainers Kafka -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.jupiter.params.version}</version>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>1.21.2</version>
       <scope>test</scope>
     </dependency>
 
