@@ -17,26 +17,26 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class KafkaPoolTest {
 
-    static ConfluentKafkaContainer kafka;
+    static ConfluentKafkaContainer kafkaBroker;
 
     @BeforeAll
     static void startKafka() {
-        kafka = new ConfluentKafkaContainer("confluentinc/cp-kafka:latest");
-        kafka.start();
+        kafkaBroker = new ConfluentKafkaContainer("confluentinc/cp-kafka:latest");
+        kafkaBroker.start();
     }
 
     @AfterAll
     static void stopKafka() {
-        kafka.stop();
+        kafkaBroker.stop();
     }
 
     @Test
     void failFastSuccess()
     {
         //Arrange
-        Properties consumerProps = new Properties();
-        consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers());
-        var filterProperties = new FilterProperties("Test", consumerProps);
+        Properties properties = new Properties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBroker.getBootstrapServers());
+        var filterProperties = new FilterProperties("Test", properties);
 
         @SuppressWarnings("unused") // We need this for proper initialization of KafkaPool
         var jLegMed = new JLegMed(KafkaPoolTest.class)
