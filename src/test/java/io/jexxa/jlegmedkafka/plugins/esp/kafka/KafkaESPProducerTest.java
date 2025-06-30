@@ -1,21 +1,31 @@
 package io.jexxa.jlegmedkafka.plugins.esp.kafka;
 
 import io.jexxa.jlegmed.core.filter.FilterProperties;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.kafka.ConfluentKafkaContainer;
 
+import java.time.Duration;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.Properties;
 
 import static io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaESPProducer.kafkaESPProducer;
 import static java.time.Instant.now;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KafkaESPProducerTest {
 
@@ -23,6 +33,7 @@ class KafkaESPProducerTest {
     static GenericContainer<?> schemaRegistry;
     static String schemaRegistryUrl;
     private static final Network NETWORK = Network.newNetwork();
+    private static final String TEST_TOPIC = "test-topic";
 
 
     @BeforeAll
@@ -53,6 +64,18 @@ class KafkaESPProducerTest {
         kafkaBroker.stop();
     }
 
+    @BeforeEach
+    void setup() throws Exception {
+        try (AdminClient admin = AdminClient.create(Collections.singletonMap(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBroker.getBootstrapServers()))) {
+            if (admin.listTopics().names().get().contains(TEST_TOPIC)) {
+                admin.deleteTopics(Collections.singletonList(TEST_TOPIC)).all().get();
+            }
+            NewTopic topic = new NewTopic(TEST_TOPIC, 1, (short) 1);
+            admin.createTopics(Collections.singletonList(topic)).all().get();
+        }
+    }
+
+
     @Test
     @Disabled
     void sendAsJSON() {
@@ -70,28 +93,49 @@ class KafkaESPProducerTest {
         assertDoesNotThrow(() -> objectUnderTest
                 .send("test", testMessage)
                 .withTimestamp(now())
-                .toTopic("demo_java_json")
+                .toTopic(TEST_TOPIC)
                 .asJSON());
     }
 
     @Test
     void sendAsText() {
         //Arrange
-        var testMessage = new KafkaTestMessage(1, Instant.now(), "test message");
+        var expectedResult = new KafkaTestMessage(1, Instant.now(), "test message");
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBroker.getBootstrapServers());
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "sendAsText");
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
         var filterProperties = new FilterProperties("Test", properties);
 
         var objectUnderTest = kafkaESPProducer( String.class, KafkaTestMessage.class, filterProperties);
 
-        //Act - Assert
-        assertDoesNotThrow(() -> objectUnderTest
-                .send("test", testMessage)
+        //Act
+        objectUnderTest
+                .send("test", expectedResult)
                 .withTimestamp(now())
-                .toTopic("demo_java_json")
-                .asText());
+                .toTopic(TEST_TOPIC)
+                .asText();
+
+        String result = receiveMessage(properties);
+
+        assertEquals(expectedResult.toString(), result);
     }
 
+
+    private static <T> T receiveMessage(Properties consumerProps)
+    {
+        try (KafkaConsumer<String, T> consumer = new KafkaConsumer<>(consumerProps)) {
+            consumer.subscribe(Collections.singletonList(TEST_TOPIC));
+            ConsumerRecords<String, T> records = consumer.poll(Duration.ofMillis(500));
+            if (!records.isEmpty()) {
+                return records.iterator().next().value();
+            }
+        }
+        return null;
+    }
 
     public record KafkaTestMessage(int counter, Instant timestamp, String message) { }
 
