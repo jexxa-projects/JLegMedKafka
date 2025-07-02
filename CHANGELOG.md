@@ -6,6 +6,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2025-07-02
+
+### 🤖 Dependencies
+
+- *(java)* Bump com.google.cloud.tools:jib-maven-plugin - ([143289d](https://github.com/jexxa-projects/JLegMedKafka/commit/143289df3dd79e1b187075eb05f67c894801c5ae))
+- *(java)* Bump org.apache.kafka:kafka-clients from 4.0.0 to 8.0.0-ce - ([eb9629b](https://github.com/jexxa-projects/JLegMedKafka/commit/eb9629bfe08a434fa53e5a7386929bcfbbdf5930))
+- *(java)* Bump org.junit.platform:junit-platform-launcher - ([ae2fa13](https://github.com/jexxa-projects/JLegMedKafka/commit/ae2fa13d0ab26d77bf649cf9cf3aaee96f89e2d2))
+- *(java)* Bump org.junit.jupiter:junit-jupiter-params - ([e9d00f6](https://github.com/jexxa-projects/JLegMedKafka/commit/e9d00f6508376555627ecb5bfb5126bd10894b85))
+- *(java)* Bump org.junit.jupiter:junit-jupiter-engine - ([3775059](https://github.com/jexxa-projects/JLegMedKafka/commit/3775059b13fa5f4d8f6e4ea4f06d18c95aefc5f8))
+- *(java)* Bump io.confluent:kafka-json-schema-serializer ([#14](https://github.com/jexxa-projects/JLegMedKafka/issues/14)) - ([04fb2bc](https://github.com/jexxa-projects/JLegMedKafka/commit/04fb2bc50b1449a91c54ef1ba7b1e05db6ae9818))
+- *(java)* Bump io.jexxa.jlegmed:jlegmed-core from 3.5.6 to 3.5.7 - ([0b87fd3](https://github.com/jexxa-projects/JLegMedKafka/commit/0b87fd3b5adfe1495915c85666798e3805e3035a))
+- *(java)* Bump org.testcontainers:kafka from 1.21.2 to 1.21.3 - ([d3ea7f6](https://github.com/jexxa-projects/JLegMedKafka/commit/d3ea7f68e699848510e78050944c2d20c5f1a0f8))
+
 ## [0.1.0] - 2025-06-22
 
 ### 🤖 Dependencies
