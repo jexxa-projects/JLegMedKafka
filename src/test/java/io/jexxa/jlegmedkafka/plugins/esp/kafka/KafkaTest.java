@@ -22,15 +22,16 @@ class KafkaTest {
     void testKafkaWithSchemaRegistry() {
         Network network = Network.newNetwork();
         try (
-                KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:8.0.0")).withNetwork( network).withNetworkAliases("kafka").withKraft()
+                KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:8.0.0")).withNetwork( network).withNetworkAliases("kafka").withKraft();
+                GenericContainer<?> schemaRegistry = new GenericContainer<>(
+                    DockerImageName.parse("confluentinc/cp-schema-registry:8.0.0"));
         ) {
             System.out.println(">Kafka start");
 
             kafka.start();
             System.out.println("<Kafka started");
 
-            GenericContainer<?> schemaRegistry = new GenericContainer<>(
-                    DockerImageName.parse("confluentinc/cp-schema-registry:8.0.0"))
+            schemaRegistry
                     .withNetwork(network)
                     .withEnv("SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS", "PLAINTEXT://kafka:9092")
                     .withEnv("SCHEMA_REGISTRY_HOST_NAME", "schema-registry")
