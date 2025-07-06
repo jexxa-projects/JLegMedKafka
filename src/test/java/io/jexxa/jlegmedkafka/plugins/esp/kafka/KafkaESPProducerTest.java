@@ -141,22 +141,9 @@ class KafkaESPProducerTest {
                 .toTopic(TEST_TEXT_TOPIC)
                 .asText();
 
-        String result = receiveTextMessage(consumerProperties, TEST_TEXT_TOPIC);
+        String result = receiveGenericMessage(consumerProperties, TEST_TEXT_TOPIC);
 
         assertEquals(expectedResult.toString(), result);
-    }
-
-
-    private static String receiveTextMessage(Properties consumerProps, String topic)
-    {
-        try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps)) {
-            consumer.subscribe(Collections.singletonList(topic));
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
-            if (!records.isEmpty()) {
-                return records.iterator().next().value();
-            }
-        }
-        return null;
     }
 
     private static <T> T receiveGenericMessage(Properties consumerProps, String topic)
