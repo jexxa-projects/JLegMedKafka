@@ -4,11 +4,10 @@ import io.jexxa.jlegmed.core.BootstrapRegistry;
 import io.jexxa.jlegmed.core.FailFastException;
 import io.jexxa.jlegmed.core.JLegMed;
 import io.jexxa.jlegmed.core.filter.FilterProperties;
+import io.jexxa.jlegmedkafka.digispine.DigiSpine;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.kafka.ConfluentKafkaContainer;
 
 import java.util.Properties;
 
@@ -17,26 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class KafkaPoolTest {
 
-    static ConfluentKafkaContainer kafkaBroker;
+    static final DigiSpine DIGI_SPINE = new DigiSpine();
 
-    @BeforeAll
-    static void startKafka() {
-        kafkaBroker = new ConfluentKafkaContainer("confluentinc/cp-kafka:latest");
-        kafkaBroker.start();
-    }
 
     @AfterAll
     static void stopKafka() {
-        kafkaBroker.stop();
+        DIGI_SPINE.stop();
     }
 
     @Test
     void failFastSuccess()
     {
         //Arrange
-        Properties properties = new Properties();
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBroker.getBootstrapServers());
-        var filterProperties = new FilterProperties("Test", properties);
+        var filterProperties = new FilterProperties("Test", DIGI_SPINE.kafkaProperties());
 
         @SuppressWarnings("unused") // We need this for proper initialization of KafkaPool
         var jLegMed = new JLegMed(KafkaPoolTest.class)
