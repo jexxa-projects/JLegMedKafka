@@ -12,24 +12,6 @@ jobs:
     name: Maven-Build (Linux)
     runs-on: ubuntu-latest
 
-    # Service containers to run with `runner-job`
-    services:
-      activemq:
-        image: quay.io/artemiscloud/activemq-artemis-broker:latest
-        ports:
-          - 61616:61616
-        env:
-          AMQ_USER: admin
-          AMQ_PASSWORD: admin
-
-      postgres:
-        image: postgres
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_PASSWORD: admin
-          POSTGRES_USER: postgres
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21

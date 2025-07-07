@@ -8,25 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # Service containers to run with `runner-job`
-    services: # Start services activeMQ and Postgres-DB
-
-      activemq:
-        image: quay.io/artemiscloud/activemq-artemis-broker:latest
-        ports:
-          - 61616:61616
-        env:
-          AMQ_USER: admin
-          AMQ_PASSWORD: admin
-
-      postgres:
-        image: postgres
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_PASSWORD: admin
-          POSTGRES_USER: postgres
-
     steps:
       # Login into GHCR
       - name: Login to GitHub Container Registry
