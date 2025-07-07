@@ -4,6 +4,7 @@
 
 - *(java)* Bump org.apache.maven.plugins:maven-enforcer-plugin - ([7a69b2e](https://github.com/jexxa-projects/JLegMedKafka/commit/7a69b2ef05b18b99054b9b72ad9832e65aa7ad45))
 - *(java)* Bump org.junit.platform:junit-platform-launcher - ([a8fde93](https://github.com/jexxa-projects/JLegMedKafka/commit/a8fde93ccc58747af59e87a90ac6fe9f78486ec2))
+- *(java)* Bump io.jexxa.jlegmed:jlegmed-core - ([0dd58e7](https://github.com/jexxa-projects/JLegMedKafka/commit/0dd58e7cc29b0b240c2c6abd22421844bc592073))
 
 ### Cleanup
 
