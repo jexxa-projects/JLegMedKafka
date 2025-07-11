@@ -1,7 +1,7 @@
 package io.jexxa.jlegmedkafka;
 
+import io.jexxa.esp.drivenadapter.kafka.KafkaPool;
 import io.jexxa.jlegmed.core.JLegMed;
-import io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaPool;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaProducer;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaTestMessage;
 import io.jexxa.jlegmedkafka.plugins.mykafka.MyKafkaTestMessage2;

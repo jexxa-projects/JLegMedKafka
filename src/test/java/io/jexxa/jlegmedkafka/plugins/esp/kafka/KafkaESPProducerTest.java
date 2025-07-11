@@ -1,7 +1,7 @@
 package io.jexxa.jlegmedkafka.plugins.esp.kafka;
 
 import io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer;
-import io.jexxa.jlegmedkafka.digispine.DigiSpine;
+import io.jexxa.esp.digispine.DigiSpine;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -15,8 +15,7 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Properties;
 
-import static io.jexxa.jlegmed.core.filter.FilterProperties.filterPropertiesOf;
-import static io.jexxa.jlegmedkafka.plugins.esp.kafka.KafkaESPProducer.kafkaESPProducer;
+import static io.jexxa.esp.drivenadapter.kafka.KafkaESPProducer.kafkaESPProducer;
 import static java.time.Instant.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,7 +50,7 @@ class KafkaESPProducerTest {
 
             var objectUnderTest = kafkaESPProducer( String.class,
                     KafkaTestMessage.class,
-                    filterPropertiesOf("sendAsJSON", DIGI_SPINE.kafkaProperties()));
+                    DIGI_SPINE.kafkaProperties());
 
             //Act
             objectUnderTest
@@ -77,7 +76,7 @@ class KafkaESPProducerTest {
 
         var objectUnderTest = kafkaESPProducer( String.class,
                 KafkaTestMessage.class,
-                filterPropertiesOf("objectUnderTest", DIGI_SPINE.kafkaProperties()));
+                DIGI_SPINE.kafkaProperties());
 
         var expectedResult = new KafkaTestMessage(1, Instant.now(), "test message");
 

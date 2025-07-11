@@ -38,11 +38,11 @@
 
     <!-- version of dependencies -->
     <jlegmed.core.version>3.5.8</jlegmed.core.version>
+    <jexxa.esp.version>0.1.0</jexxa.esp.version>
     <activemq.artemis.client.version>2.41.0</activemq.artemis.client.version>
     <postgres.version>42.7.7</postgres.version>
     <slf4j.simple.version>2.0.17</slf4j.simple.version>
-    <kafka.clients.version>8.0.0-ce</kafka.clients.version>
-    <kafka.json.schema.serializer>8.0.0</kafka.json.schema.serializer>
+
 
     <!-- version of test dependencies -->
     <junit.platform.launcher.version>1.13.3</junit.platform.launcher.version>
@@ -96,22 +96,17 @@
     </dependency>
 
     <dependency>
+      <groupId>io.jexxa.esp</groupId>
+      <artifactId>esp-adapters-core</artifactId>
+      <version>${jexxa.esp.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.simple.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka-clients</artifactId>
-      <version>${kafka.clients.version}</version>
-    </dependency>
-    <!-- Confluent JSON Schema Serializer -->
-    <dependency>
-      <groupId>io.confluent</groupId>
-      <artifactId>kafka-json-schema-serializer</artifactId>
-      <version>${kafka.json.schema.serializer}</version>
-    </dependency>
 
     <!-- Dependencies required for tests -->
     <dependency>
@@ -128,14 +123,13 @@
       <scope>test</scope>
     </dependency>
 
-
-    <!-- Testcontainers Kafka -->
     <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>kafka</artifactId>
-      <version>1.21.3</version>
+      <groupId>io.jexxa.esp</groupId>
+      <artifactId>esp-adapters-test</artifactId>
+      <version>${jexxa.esp.version}</version>
       <scope>test</scope>
     </dependency>
+
 
     <dependency>
       <groupId>org.awaitility</groupId>
@@ -706,10 +700,4 @@
       </build>
     </profile>
   </profiles>
-  <repositories>
-    <repository>
-      <id>confluent</id>
-      <url>https://packages.confluent.io/maven</url>
-    </repository>
-  </repositories>
 </project>
