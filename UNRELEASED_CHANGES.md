@@ -11,6 +11,7 @@
 - *(java)* Bump org.junit.jupiter:junit-jupiter-engine - ([d0bc482](https://github.com/jexxa-projects/JLegMedKafka/commit/d0bc482d7f3874e0ae416402cfb1aad331022333))
 - *(java)* Bump org.junit.platform:junit-platform-launcher - ([9f3e180](https://github.com/jexxa-projects/JLegMedKafka/commit/9f3e180eff07e449e8bb90a51c55131112d6011f))
 - *(java)* Bump jexxa.esp.version from 0.2.0 to 0.3.0 - ([57055de](https://github.com/jexxa-projects/JLegMedKafka/commit/57055de032df3711ce2d2c096ffdeb5ccb097213))
+- *(java)* Bump jexxa.esp.version from 0.3.0 to 0.4.0 - ([3c9d003](https://github.com/jexxa-projects/JLegMedKafka/commit/3c9d00397936832511f85489939bfa14e326d154))
 
 ### Cleanup
 
