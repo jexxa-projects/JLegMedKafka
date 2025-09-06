@@ -14,6 +14,7 @@
 - *(java)* Bump jexxa.esp.version from 0.2.0 to 0.3.0 - ([57055de](https://github.com/jexxa-projects/JLegMedKafka/commit/57055de032df3711ce2d2c096ffdeb5ccb097213))
 - *(java)* Bump jexxa.esp.version from 0.3.0 to 0.4.0 - ([3c9d003](https://github.com/jexxa-projects/JLegMedKafka/commit/3c9d00397936832511f85489939bfa14e326d154))
 - *(java)* Bump org.codehaus.mojo:versions-maven-plugin - ([4aaa221](https://github.com/jexxa-projects/JLegMedKafka/commit/4aaa221b7b7c1396697a9a90148e6e710f8cfa20))
+- *(java)* Bump io.jexxa.jlegmed:jlegmed-core from 3.5.8 to 4.2.0 ([#32](https://github.com/jexxa-projects/JLegMedKafka/issues/32)) - ([573b203](https://github.com/jexxa-projects/JLegMedKafka/commit/573b203ee960b2b39261ef2d899262b84def39fe))
 
 ### Cleanup
 
