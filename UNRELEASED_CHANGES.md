@@ -4,6 +4,7 @@
 
 - *(CI)* Bump actions/checkout from 4 to 5 - ([47b5599](https://github.com/jexxa-projects/JLegMedKafka/commit/47b55996640e233e5bff91c1420b042490cbd225))
 - *(CI)* Bump actions/setup-java from 4 to 5 - ([e1203e9](https://github.com/jexxa-projects/JLegMedKafka/commit/e1203e9651b0c9e6e43f542f4008e543707e770a))
+- *(CI)* Bump redpanda-data/github-action from 0.1.3 to 0.1.4 - ([ff7c4ab](https://github.com/jexxa-projects/JLegMedKafka/commit/ff7c4ab8f7acdda16097e3eca7cddcfe2372bd40))
 - *(java)* Bump org.apache.maven.plugins:maven-enforcer-plugin - ([7a69b2e](https://github.com/jexxa-projects/JLegMedKafka/commit/7a69b2ef05b18b99054b9b72ad9832e65aa7ad45))
 - *(java)* Bump org.junit.platform:junit-platform-launcher - ([a8fde93](https://github.com/jexxa-projects/JLegMedKafka/commit/a8fde93ccc58747af59e87a90ac6fe9f78486ec2))
 - *(java)* Bump io.jexxa.jlegmed:jlegmed-core - ([0dd58e7](https://github.com/jexxa-projects/JLegMedKafka/commit/0dd58e7cc29b0b240c2c6abd22421844bc592073))
