@@ -20,6 +20,7 @@
 - *(java)* Bump jexxa.esp.version from 0.4.0 to 0.5.0 - ([ea2acca](https://github.com/jexxa-projects/JLegMedKafka/commit/ea2acca4b7bcac87628c111f313b95d0effa2205))
 - *(java)* Bump io.jexxa.jlegmed:jlegmed-core from 4.3.0 to 4.4.0 - ([72fcbbe](https://github.com/jexxa-projects/JLegMedKafka/commit/72fcbbe2a55c94029553129ac82cb51723e2ed61))
 - *(java)* Bump org.apache.maven.plugins:maven-surefire-plugin - ([e48657d](https://github.com/jexxa-projects/JLegMedKafka/commit/e48657d694e93e9ffaf2d4899e3ec3b2c0b484f2))
+- *(java)* Bump org.apache.maven.plugins:maven-failsafe-plugin - ([ad8d3e9](https://github.com/jexxa-projects/JLegMedKafka/commit/ad8d3e9145ab5f694d6395dd284b6d6de1574bb8))
 
 ### Cleanup
 
