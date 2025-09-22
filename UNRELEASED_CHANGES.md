@@ -22,6 +22,7 @@
 - *(java)* Bump org.apache.maven.plugins:maven-surefire-plugin - ([e48657d](https://github.com/jexxa-projects/JLegMedKafka/commit/e48657d694e93e9ffaf2d4899e3ec3b2c0b484f2))
 - *(java)* Bump org.apache.maven.plugins:maven-failsafe-plugin - ([ad8d3e9](https://github.com/jexxa-projects/JLegMedKafka/commit/ad8d3e9145ab5f694d6395dd284b6d6de1574bb8))
 - *(java)* Bump org.apache.maven.plugins:maven-shade-plugin - ([42021a8](https://github.com/jexxa-projects/JLegMedKafka/commit/42021a87d0b376f0a99acc26bb1645cca780bac3))
+- *(java)* Bump org.apache.maven.plugins:maven-compiler-plugin - ([2d4b5ea](https://github.com/jexxa-projects/JLegMedKafka/commit/2d4b5ea7b1005618bbbcbb698a1955e4177f3643))
 
 ### Cleanup
 
